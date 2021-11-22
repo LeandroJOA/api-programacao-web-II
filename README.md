@@ -1,4 +1,4 @@
-API desenvolvida para apresentação na disciplina de Programação Web II lecionada pelo orientador Wesley Ferreira, onde o mesmo pediu para desenvolver uma aplicação com Back-End e Front-End.
+
 
 # Back-End
 
