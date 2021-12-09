@@ -29,9 +29,9 @@ import { ProdutoComponent } from './produto/produto.component';
 import { VendaComponent } from './venda/venda.component';
 import { FornecedorComponent } from './fornecedor/fornecedor.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
-import { FuncionarioComponent } from './funcionario/funcionario.component';
 import { ParceiroComponent } from './parceiro/parceiro.component';
 import { ClienteComponent } from './cliente/cliente.component';
+import { FuncionarioComponent } from './funcionario/funcionario.component';
 
 const routes: Routes = [
   { path: 'produtos', component: ProdutoComponent },
@@ -49,9 +49,9 @@ const routes: Routes = [
     VendaComponent,
     FornecedorComponent,
     NavBarComponent,
-    FuncionarioComponent,
     ParceiroComponent,
     ClienteComponent,
+    FuncionarioComponent,
   ],
   imports: [
     BrowserModule,
