@@ -1,1 +1,97 @@
-<p>funcionario works!</p>
+<p-toast></p-toast>
+
+<div class="p-grid p-jc-center p-shadow-5">
+    <div class="p-col-9">
+            <div class="card">
+                <p-toolbar styleClass="p-mb-4">
+                    <ng-template pTemplate="left">
+                        <button pButton pRipple label="Novo" icon="pi pi-plus" class="p-button-success p-mr-2"
+                            (click)="criarFuncionario()"></button>
+                    </ng-template>
+                </p-toolbar>
+
+                <p-table #dt [value]="funcionarios" [rows]="4" [paginator]="true"
+                    [globalFilterFields]="['nome','funcao','salario']" [rowHover]="true"
+                    dataKey="_id" currentPageReportTemplate="Mostrando {first} de {last} no total de {totalRecords}"
+                    [showCurrentPageReport]="true">
+                    <ng-template pTemplate="caption">
+                        <div class="p-d-flex p-ai-center p-jc-between">
+                            <h5 class="p-m-0">Quadro de funcionarios</h5>
+                            <span class="p-input-icon-left">
+                                <i class="pi pi-search"></i>
+                                <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')"
+                                    placeholder="Pesquisar..." />
+                            </span>
+                        </div>
+                    </ng-template>
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th pSortableColumn="Nome">Colaborador<p-sortIcon field="nome"></p-sortIcon>
+                            </th>
+                            <th pSortableColumn="Funcao">Cargo<p-sortIcon field="funcao"></p-sortIcon>
+                            </th>
+                            <th pSortableColumn="Salario">Remuneração<p-sortIcon field="salario"></p-sortIcon>
+                            </th>
+                            <th></th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-funcionario>
+                        <tr>
+                            <td>{{funcionario.nome}}</td>
+                            <td>{{funcionario.funcao}}</td>
+                            <td>{{funcionario.salario}}</td>
+                            <td>
+                                <button pButton pRipple icon="pi pi-pencil"
+                                    class="p-button-rounded p-button-success p-mr-2"
+                                    (click)="editFuncionario(funcionario)"></button>
+                                <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"
+                                    (click)="deleteFuncionario(funcionario)"></button>
+                            </td>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="summary">
+                        <div class="p-d-flex p-ai-center p-jc-between">
+                            No total, existem {{funcionarios ? funcionarios.length : 0 }} Colaboradores.
+                        </div>
+                    </ng-template>
+                </p-table>
+            </div>
+
+            <p-dialog [(visible)]="funcionarioDialogo" [style]="{width: '450px'}" header="Informacões do colaborador" [modal]="true"
+                styleClass="p-fluid" [closable]="false">
+                <ng-template pTemplate="content">
+                    <div class="p-field">
+                        <label for="nome">Nome</label>
+                        <span _ngcontent-emx-c135="" class="p-input-icon-right">
+                            <i _ngcontent-emx-c135="" class="pi pi-check"></i>
+                            <input type="text" pInputText id="nome" [(ngModel)]="funcionario.nome" required autofocus />
+                        </span>
+                        <small class="p-error" *ngIf="submetido && funcionario.nome === ''">Nome é requirido.</small>
+                    </div>
+                    <div class="p-field">
+                        <label for="funcao">Cargo</label>
+                        <p-dropdown appendTo="body" [(ngModel)]="funcionario.funcao" inputId="funcao" [options]="funcao"
+                             placeholder="Selecione">
+                        </p-dropdown>
+                    </div>
+                    <div class="p-formgrid p-grid">
+                        <div class="p-field p-col">
+                            <label for="salario">Salario</label>
+                            <p-inputNumber id="salario" [(ngModel)]="funcionario.salario" [showButtons]="true" [min]="0" value=0>
+                            </p-inputNumber>
+                        </div>
+                    </div>
+                </ng-template>
+
+                <ng-template pTemplate="footer">
+                    <button pButton pRipple label="Cancelar" icon="pi pi-times" class="p-button-text"
+                        (click)="hideDialog()"></button>
+                    <button pButton pRipple label="Salvar" icon="pi pi-check" class="p-button-text"
+                        (click)="saveFuncionario()"></button>
+                </ng-template>
+            </p-dialog>
+
+            <p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
+        </div>
+    </div>
+

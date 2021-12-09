@@ -1,1 +1,98 @@
-<p>parceiro works!</p>
+
+<p-toast></p-toast>
+
+<div class="p-grid p-jc-center p-shadow-5">
+    <div class="p-col-9">
+            <div class="card">
+                <p-toolbar styleClass="p-mb-4">
+                    <ng-template pTemplate="left">
+                        <button pButton pRipple label="Novo" icon="pi pi-plus" class="p-button-success p-mr-2"
+                            (click)="criarParceiro()"></button>
+                    </ng-template>
+                </p-toolbar>
+
+                <p-table #dt [value]="parceiros" [rows]="4" [paginator]="true"
+                    [globalFilterFields]="['nome','telefone','endereco']" [rowHover]="true"
+                    dataKey="_id" currentPageReportTemplate="Mostrando {first} de {last} no total de {totalRecords}"
+                    [showCurrentPageReport]="true">
+                    <ng-template pTemplate="caption">
+                        <div class="p-d-flex p-ai-center p-jc-between">
+                            <h5 class="p-m-0">Quadro de parceiros</h5>
+                            <span class="p-input-icon-left">
+                                <i class="pi pi-search"></i>
+                                <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')"
+                                    placeholder="Pesquisar..." />
+                            </span>
+                        </div>
+                    </ng-template>
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th pSortableColumn="Nome">Nome<p-sortIcon field="nome"></p-sortIcon>
+                            </th>
+                            <th pSortableColumn="Telefone">Telefone<p-sortIcon field="telefone"></p-sortIcon>
+                            </th>
+                            <th pSortableColumn="Endereco">Endereço<p-sortIcon field="endereco"></p-sortIcon>
+                            </th>
+                            <th></th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-parceiro>
+                        <tr>
+                            <td>{{parceiro.nome}}</td>
+                            <td>{{parceiro.telefone}}</td>
+                            <td>{{parceiro.endereco}}</td>
+                            <td>
+                                <button pButton pRipple icon="pi pi-pencil"
+                                    class="p-button-rounded p-button-success p-mr-2"
+                                    (click)="editParceiro(parceiro)"></button>
+                                <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"
+                                    (click)="deleteParceiro(parceiro)"></button>
+                            </td>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="summary">
+                        <div class="p-d-flex p-ai-center p-jc-between">
+                            No total, existem {{parceiros ? parceiros.length : 0 }} Parceiros.
+                        </div>
+                    </ng-template>
+                </p-table>
+            </div>
+
+            <p-dialog [(visible)]="parceiroDialogo" [style]="{width: '450px'}" header="Informacões do parceiro" [modal]="true"
+                styleClass="p-fluid" [closable]="false">
+                <ng-template pTemplate="content">
+                    <div class="p-field">
+                        <label for="nome">Nome</label>
+                        <span _ngcontent-emx-c135="" class="p-input-icon-right">
+                            <i _ngcontent-emx-c135="" class="pi pi-check"></i>
+                            <input type="text" pInputText id="nome" [(ngModel)]="parceiro.nome" required autofocus />
+                        </span>
+                        <small class="p-error" *ngIf="submetido && parceiro.nome === ''">Nome é requirido.</small>
+                    </div>
+                    <div class="p-field">
+                        <label for="telefone">telefone</label>
+                        <span _ngcontent-emx-c135="" class="p-input-icon-right">
+                            <i _ngcontent-emx-c135="" class="pi pi-check"></i>
+                            <input type="text" pInputText id="telefone" [(ngModel)]="parceiro.telefone" autofocus />
+                        </span>
+                    </div>
+                    <div class="p-field">
+                        <label for="endereco">Endereço</label>
+                        <span _ngcontent-emx-c135="" class="p-input-icon-right">
+                            <i _ngcontent-emx-c135="" class="pi pi-check"></i>
+                            <input type="text" pInputText id="endereco" [(ngModel)]="parceiro.endereco" autofocus />
+                        </span>
+                    </div>
+                </ng-template>
+
+                <ng-template pTemplate="footer">
+                    <button pButton pRipple label="Cancelar" icon="pi pi-times" class="p-button-text"
+                        (click)="hideDialog()"></button>
+                    <button pButton pRipple label="Salvar" icon="pi pi-check" class="p-button-text"
+                        (click)="saveParceiro()"></button>
+                </ng-template>
+            </p-dialog>
+
+            <p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
+        </div>
+    </div>
