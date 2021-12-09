@@ -15,7 +15,7 @@ Api desenvolvida em NodeJS com acesso a banco de dados não relacional = MongoDB
   
   &#8594; node server.js
 
-As rotas para acessar a API estão na pasta [routes](https://github.com/LeandroJOA/api-rest-programacao-web/tree/main/backend/routes). Você pode testar as rotas antes de usar o frontend com o software Insomnia/Postman passando a [URL](https://localhost:4000) e inserindo a rota desejada.
+As rotas para acessar a API estão na pasta [routes](https://github.com/LeandroJOA/api-programacao-web-II/tree/master/backend/routes). Você pode testar as rotas antes de usar o frontend com o software Insomnia/Postman passando a [URL](https://localhost:4000) e inserindo a rota desejada.
 
 # Front-End
 
