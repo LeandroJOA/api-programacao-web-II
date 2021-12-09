@@ -1,10 +1,10 @@
 const router = require('express').Router();
 const mongoose = require('mongoose');
 
-const Produto = require('../models/produtos');
+const Venda = require('../models/vendas');
 
 router.get('/', (req, res) => {
-  Produto.find()
+  Venda.find()
     .exec()
     .then((doc) => {
       res.status(200).json(doc);
@@ -16,17 +16,17 @@ router.get('/', (req, res) => {
     });
 });
 
-router.get('/:produtoId', (req, res) => {
-  Produto.findOne({_id: req.params.produtoId})
+router.get('/:vendaId', (req, res) => {
+  Venda.findOne({_id: req.params.vendaId})
     .exec()
     .then((result) => {
       if (result === null) {
         res.status(404).json({
-          message: 'Produto não encontrado!',
+          message: 'Venda não encontrada!',
         });
       }
       res.status(200).json({
-        produto: result,
+        venda: result,
       });
     })
     .catch((reject) => {
@@ -37,19 +37,19 @@ router.get('/:produtoId', (req, res) => {
 });
 
 router.post('/', (req, res) => {
-  const produto = new Produto({
+  const venda = new Venda({
     _id: new mongoose.Types.ObjectId(),
-    nome: req.body.nome,
-    tipo: req.body.tipo,
-    preco: req.body.preco,
+    produto: req.body.produto,
+    quantidade: req.body.quantidade,
+    total: req.body.total,
   });
 
-  produto
+  venda
     .save()
     .then((result) => {
       res.status(201).json({
-        message: 'Produto salvo com sucesso!',
-        produto,
+        message: 'Venda salva com sucesso!',
+        venda,
       });
     })
     .catch((reject) => {
@@ -59,38 +59,38 @@ router.post('/', (req, res) => {
     });
 });
 
-router.put('/:produtoId', (req, res) => {
-  Produto.updateOne(
-    {_id: req.params.produtoId},
+router.put('/:vendaId', (req, res) => {
+  Venda.updateOne(
+    {_id: req.params.vendaId},
     {
-      nome: req.body.nome,
-      tipo: req.body.tipo,
-      preco: req.body.preco,
+      produto: req.body.produto,
+      quantidade: req.body.quantidade,
+      total: req.body.total,
     }
   )
     .then((result) => {
       res.status(200).json({
-        message: 'Produto atualizado com sucesso!',
+        message: 'Venda atualizada com sucesso!',
       });
     })
     .catch((reject) => {
       res.status(404).json({
-        message: 'Produto não encontrado!',
+        message: 'Venda não encontrada!',
         error: reject,
       });
     });
 });
 
-router.delete('/:produtoId', (req, res) => {
-  Produto.deleteOne({_id: req.params.produtoId})
+router.delete('/:vendaId', (req, res) => {
+  Venda.deleteOne({_id: req.params.vendaId})
     .then((result) => {
       res.status(200).json({
-        message: 'Produto deletado com sucesso!',
+        message: 'Venda deletada com sucesso!',
       });
     })
     .catch((reject) => {
       res.status(404).json({
-        message: 'Produto não encontrado!',
+        message: 'Venda não encontrada!',
         error: reject,
       });
     });

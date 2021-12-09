@@ -6,6 +6,8 @@ const mongoose = require('mongoose')
 const cors = require('cors');
 
 const produtoRouter = require('./routes/produto')
+const vendaRouter = require('./routes/venda');
+const fornecedorRouter = require('./routes/fornecedor');
 
 const app = express()
 app.use(morgan('dev'))
@@ -18,6 +20,8 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 
 app.use('/produtos', produtoRouter);
+app.use('/vendas', vendaRouter);
+app.use('/fornecedores', fornecedorRouter);
 
 app.use((req, res, next) => {
     const error = new Error('Not Found')

@@ -1,10 +1,10 @@
 const router = require('express').Router();
 const mongoose = require('mongoose');
 
-const Produto = require('../models/produtos');
+const Fornecedor = require('../models/fornecedores');
 
 router.get('/', (req, res) => {
-  Produto.find()
+  Fornecedor.find()
     .exec()
     .then((doc) => {
       res.status(200).json(doc);
@@ -16,17 +16,17 @@ router.get('/', (req, res) => {
     });
 });
 
-router.get('/:produtoId', (req, res) => {
-  Produto.findOne({_id: req.params.produtoId})
+router.get('/:fornecedorId', (req, res) => {
+  Fornecedor.findOne({_id: req.params.fornecedorId})
     .exec()
     .then((result) => {
       if (result === null) {
         res.status(404).json({
-          message: 'Produto não encontrado!',
+          message: 'Fornecedor não encontrado!',
         });
       }
       res.status(200).json({
-        produto: result,
+        fornecedor: result,
       });
     })
     .catch((reject) => {
@@ -37,19 +37,19 @@ router.get('/:produtoId', (req, res) => {
 });
 
 router.post('/', (req, res) => {
-  const produto = new Produto({
+  const fornecedor = new Fornecedor({
     _id: new mongoose.Types.ObjectId(),
     nome: req.body.nome,
-    tipo: req.body.tipo,
-    preco: req.body.preco,
+    produto: req.body.produto,
+    valorLote: req.body.valorLote,
   });
 
-  produto
+  fornecedor
     .save()
     .then((result) => {
       res.status(201).json({
-        message: 'Produto salvo com sucesso!',
-        produto,
+        message: 'Fornecedor salvo com sucesso!',
+        fornecedor,
       });
     })
     .catch((reject) => {
@@ -59,38 +59,38 @@ router.post('/', (req, res) => {
     });
 });
 
-router.put('/:produtoId', (req, res) => {
-  Produto.updateOne(
-    {_id: req.params.produtoId},
+router.put('/:fornecedorId', (req, res) => {
+  Fornecedor.updateOne(
+    {_id: req.params.fornecedorId},
     {
       nome: req.body.nome,
-      tipo: req.body.tipo,
-      preco: req.body.preco,
+      produto: req.body.produto,
+      valorLote: req.body.valorLote,
     }
   )
     .then((result) => {
       res.status(200).json({
-        message: 'Produto atualizado com sucesso!',
+        message: 'Fornecedor atualizado com sucesso!',
       });
     })
     .catch((reject) => {
       res.status(404).json({
-        message: 'Produto não encontrado!',
+        message: 'Fornecedor não encontrado!',
         error: reject,
       });
     });
 });
 
-router.delete('/:produtoId', (req, res) => {
-  Produto.deleteOne({_id: req.params.produtoId})
+router.delete('/:fornecedorId', (req, res) => {
+  Fornecedor.deleteOne({_id: req.params.fornecedorId})
     .then((result) => {
       res.status(200).json({
-        message: 'Produto deletado com sucesso!',
+        message: 'Fornecedor deletado com sucesso!',
       });
     })
     .catch((reject) => {
       res.status(404).json({
-        message: 'Produto não encontrado!',
+        message: 'Fornecedor não encontrado!',
         error: reject,
       });
     });
