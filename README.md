@@ -7,13 +7,13 @@ Api desenvolvida em NodeJS com acesso a banco de dados não relacional = MongoDB
 - Para buildar o backend é necessário que sigam os seguintes passos:
 
 
-  &#8594; git clone https://github.com/LeandroJOA/api-rest-programacao-web
+  &#8594; git clone https://github.com/LeandroJOA/api-programacao-web-II.git
 
   &#8594; cd api-rest-programacao-web/backend
 
   &#8594; npm install
   
-  &#8594; npm start
+  &#8594; node server.js
 
 As rotas para acessar a API estão na pasta [routes](https://github.com/LeandroJOA/api-rest-programacao-web/tree/main/backend/routes). Você pode testar as rotas antes de usar o frontend com o software Insomnia/Postman passando a [URL](https://localhost:4000) e inserindo a rota desejada.
 
@@ -24,7 +24,7 @@ Frontend web, desenvolvido em Angular11 com o PrimeNG para dar o style na tabela
 - Para buildar o frontend para verificar a view sigam os seguintes passos:
 
 
-  &#8594; git clone https://github.com/LeandroJOA/api-rest-programacao-web
+  &#8594; git clone https://github.com/LeandroJOA/api-programacao-web-II.git
 
   &#8594; cd api-rest-programacao-web/frontend
 
