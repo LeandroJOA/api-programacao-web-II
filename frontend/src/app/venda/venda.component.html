@@ -1,0 +1,96 @@
+<p-toast></p-toast>
+
+<div class="p-grid p-jc-center p-shadow-5">
+    <div class="p-col-9">
+        <div class="card">
+            <p-toolbar styleClass="p-mb-4">
+                <ng-template pTemplate="left">
+                    <button pButton pRipple label="Novo" icon="pi pi-plus" class="p-button-success p-mr-2"
+                        (click)="criarVenda()"></button>
+                </ng-template>
+            </p-toolbar>
+
+            <p-table #dt [value]="vendas" [rows]="4" [paginator]="true"
+                [globalFilterFields]="['produto','quantidade','total', 'nota']" [rowHover]="true" dataKey="_id"
+                currentPageReportTemplate="Mostrando {first} de {last} no total de {totalRecords}"
+                [showCurrentPageReport]="true">
+                <ng-template pTemplate="caption">
+                    <div class="p-d-flex p-ai-center p-jc-between">
+                        <h5 class="p-m-0">Lista de Vendas</h5>
+                        <span class="p-input-icon-left">
+                            <i class="pi pi-search"></i>
+                            <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')"
+                                placeholder="Pesquisar..." />
+                        </span>
+                    </div>
+                </ng-template>
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th pSortableColumn="Produto">Produto<p-sortIcon field="produto"></p-sortIcon>
+                        </th>
+                        <th pSortableColumn="Quantidade">Quantidade<p-sortIcon field="quantidade"></p-sortIcon>
+                        </th>
+                        <th pSortableColumn="Total">Total<p-sortIcon field="total"></p-sortIcon>
+                        </th>
+                        <th></th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-venda>
+                    <tr>
+                        <td>{{venda.produto}}</td>
+                        <td>{{venda.quantidade}}</td>
+                        <td>{{venda.total}}</td>
+                        <td>
+                            <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2"
+                                (click)="editVenda(venda)"></button>
+                            <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"
+                                (click)="deleteVenda(venda)"></button>
+                        </td>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="summary">
+                    <div class="p-d-flex p-ai-center p-jc-between">
+                        No total, existem {{vendas ? vendas.length : 0 }} vendas.
+                    </div>
+                </ng-template>
+            </p-table>
+        </div>
+
+        <p-dialog [(visible)]="vendaDialogo" [style]="{width: '450px'}" header="Detalhes da Venda" [modal]="true"
+            styleClass="p-fluid" [closable]="false">
+            <ng-template pTemplate="content">
+                <div class="p-field">
+                    <label for="produto">Produto</label>
+                    <span _ngcontent-emx-c135="" class="p-input-icon-right">
+                        <i _ngcontent-emx-c135="" class="pi pi-check"></i>
+                        <input type="text" pInputText id="produto" [(ngModel)]="venda.produto" required autofocus />
+                    </span>
+                    <small class="p-error" *ngIf="submetido && venda.produto === ''">Nome do produto é requirido.</small>
+                </div>
+                <div class="p-formgrid p-grid">
+                    <div class="p-field p-col">
+                        <label for="quantidade">Quantidade</label>
+                        <p-inputNumber id="quantidade" [(ngModel)]="venda.quantidade" [showButtons]="true" [min]="0" value=0>
+                        </p-inputNumber>
+                    </div>
+                </div>
+                <div class="p-formgrid p-grid">
+                    <div class="p-field p-col">
+                        <label for="total">Total</label>
+                        <p-inputNumber id="total" [(ngModel)]="venda.total" [showButtons]="true" [min]="0" value=0>
+                        </p-inputNumber>
+                    </div>
+                </div>
+            </ng-template>
+
+            <ng-template pTemplate="footer">
+                <button pButton pRipple label="Cancelar" icon="pi pi-times" class="p-button-text"
+                    (click)="hideDialog()"></button>
+                <button pButton pRipple label="Salvar" icon="pi pi-check" class="p-button-text"
+                    (click)="saveVenda()"></button>
+            </ng-template>
+        </p-dialog>
+
+        <p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
+    </div>
+</div>

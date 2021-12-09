@@ -26,15 +26,21 @@ import { CardModule } from 'primeng/card';
 import { AppComponent } from './app.component';
 
 import { ProdutoComponent } from './produto/produto.component';
+import { VendaComponent } from './venda/venda.component';
+import { FornecedorComponent } from './fornecedor/fornecedor.component';
 
 const routes: Routes = [
-  { path: '', component: ProdutoComponent},
+  { path: 'produtos', component: ProdutoComponent },
+  { path: 'vendas', component: VendaComponent },
+  { path: 'fornecedores', component: FornecedorComponent },
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
     ProdutoComponent,
+    VendaComponent,
+    FornecedorComponent,
   ],
   imports: [
     BrowserModule,
