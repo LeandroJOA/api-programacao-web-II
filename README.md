@@ -15,7 +15,7 @@ Api desenvolvida em NodeJS com acesso a banco de dados não relacional = MongoDB
   
   &#8594; node server.js
 
-As rotas para acessar a API estão na pasta [routes](https://github.com/LeandroJOA/api-programacao-web-II/tree/master/backend/routes). Você pode testar as rotas antes de usar o frontend com o software Insomnia/Postman passando a [URL](https://localhost:4000) e inserindo a rota desejada.
+As rotas para acessar a API estão na pasta [routes](https://github.com/LeandroJOA/api-programacao-web-II/tree/master/backend/routes). Você pode testar as rotas antes de usar o frontend com o software Insomnia/Postman passando a http://localhost:4000/ e inserindo a rota desejada.
 
 # Front-End
 
@@ -32,4 +32,4 @@ Frontend web, desenvolvido em Angular11 com o PrimeNG para dar o style na tabela
 
   &#8594; ng serve
 
-A página web normalmente se comunica com a API por meio de requisições http, as quais retornam para o frontend como um objeto json. Podemos visualizar as telas criadas através do [URL](https://localhost:4200)
+A página web normalmente se comunica com a API por meio de requisições http, as quais retornam para o frontend como um objeto json. Podemos visualizar as telas criadas através da URL http://localhost:4200/
