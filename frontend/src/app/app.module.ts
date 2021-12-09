@@ -29,11 +29,17 @@ import { ProdutoComponent } from './produto/produto.component';
 import { VendaComponent } from './venda/venda.component';
 import { FornecedorComponent } from './fornecedor/fornecedor.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
+import { FuncionarioComponent } from './funcionario/funcionario.component';
+import { ParceiroComponent } from './parceiro/parceiro.component';
+import { ClienteComponent } from './cliente/cliente.component';
 
 const routes: Routes = [
   { path: 'produtos', component: ProdutoComponent },
   { path: 'vendas', component: VendaComponent },
   { path: 'fornecedores', component: FornecedorComponent },
+  { path: 'clientes', component: ClienteComponent },
+  { path: 'funcionarios', component: FuncionarioComponent },
+  { path: 'parceiros', component: ParceiroComponent },
 ];
 
 @NgModule({
@@ -43,6 +49,9 @@ const routes: Routes = [
     VendaComponent,
     FornecedorComponent,
     NavBarComponent,
+    FuncionarioComponent,
+    ParceiroComponent,
+    ClienteComponent,
   ],
   imports: [
     BrowserModule,
