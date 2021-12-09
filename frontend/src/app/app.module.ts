@@ -28,6 +28,7 @@ import { AppComponent } from './app.component';
 import { ProdutoComponent } from './produto/produto.component';
 import { VendaComponent } from './venda/venda.component';
 import { FornecedorComponent } from './fornecedor/fornecedor.component';
+import { NavBarComponent } from './nav-bar/nav-bar.component';
 
 const routes: Routes = [
   { path: 'produtos', component: ProdutoComponent },
@@ -41,6 +42,7 @@ const routes: Routes = [
     ProdutoComponent,
     VendaComponent,
     FornecedorComponent,
+    NavBarComponent,
   ],
   imports: [
     BrowserModule,
