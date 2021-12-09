@@ -8,6 +8,9 @@ const cors = require('cors');
 const produtoRouter = require('./routes/produto')
 const vendaRouter = require('./routes/venda');
 const fornecedorRouter = require('./routes/fornecedor');
+const funcionarioRouter = require('./routes/funcionario')
+const parceirosRouter = require('./routes/parceiro')
+const clientesRouter = require('./routes/clientes')
 
 const app = express()
 app.use(morgan('dev'))
@@ -22,6 +25,9 @@ app.use(bodyParser.json())
 app.use('/produtos', produtoRouter);
 app.use('/vendas', vendaRouter);
 app.use('/fornecedores', fornecedorRouter);
+app.use('/funcionarios', funcionarioRouter);
+app.use('/parceiros', parceirosRouter);
+app.use('/clientes', clientesRouter);
 
 app.use((req, res, next) => {
     const error = new Error('Not Found')
