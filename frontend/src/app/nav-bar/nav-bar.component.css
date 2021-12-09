@@ -1,7 +1,7 @@
 .navbar {
   background-color: white;
   height: 30px;
-  margin: -10px -30px 10px -30px;
+  margin: 0px -30px 10px -30px;
   opacity: 0.8;
   text-align: center;
 }
@@ -12,6 +12,28 @@ ul {
   list-style: none;
 } 
 
+li {
+    display: inline;
+    float: left;
+    margin: 0 5px 0 5px;
+}
+
+a.nostyle:link {
+    text-decoration: inherit;
+    color: inherit;
+    cursor: auto;
+}
+
+a.nostyle:visited {
+    text-decoration: inherit;
+    color: inherit;
+    cursor: auto;
+}
+
+a {
+    color: #FFFFFF;
+    text-decoration: none;
+}
 
 
 

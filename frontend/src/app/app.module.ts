@@ -34,7 +34,7 @@ import { ParceiroComponent } from './parceiro/parceiro.component';
 import { ClienteComponent } from './cliente/cliente.component';
 
 const routes: Routes = [
-  { path: 'produtos', component: ProdutoComponent },
+  { path: '', component: ProdutoComponent },
   { path: 'vendas', component: VendaComponent },
   { path: 'fornecedores', component: FornecedorComponent },
   { path: 'clientes', component: ClienteComponent },
